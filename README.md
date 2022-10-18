@@ -1,5 +1,5 @@
 # battleship
 
-This is the start of the readme
+This is the start of the README
 
-This is practice for merging in a branch
+Attempting to create a merge conflict
