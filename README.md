@@ -2,4 +2,6 @@
 
 This is the start of the README
 
-Attempting to create a merge conflict
+This is practice for merging in a branch
+
+Testing for merge! 
