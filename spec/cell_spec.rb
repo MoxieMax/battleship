@@ -58,23 +58,32 @@ RSpec.describe Cell do
 
     it 'wont sink a ship with less than required amount of hits' do
       cell_1.place_ship(cruiser)
-      expect(cell_1.ship).to eq(cruiser)
       cell_1.fire_upon
       expect(cell_1.ship.health).to eq(2)
       expect(cell_1.fired_upon?).to eq(true)
       expect(cell_1.ship.sunk?).to eq(false)
     end
 
-    it 'will sink a ship when health reaches 0'
-
     it 'cant have the same cell hit twice' do
       cell_1.place_ship(cruiser)
-      expect(cell_1.ship).to eq(cruiser)
       cell_1.fire_upon
       expect(cell_1.ship.health).to eq(2)
       expect(cell_1.fired_upon?).to eq(true)
       cell_1.fire_upon
       expect(cell_1.ship.health).to eq(2)
+    end
+
+    it 'will render a cell when prompted' do
+      cell_2.place_ship(cruiser)
+      expect(cell_2.render).to eq(".")
+      expect(cell_2.render(true)).to eq("S")
+      cell_2.fire_upon
+      expect(cell_2.render).to eq("H")
+      expect(cruiser.sunk?).to eq(false)
+      cruiser.hit
+      cruiser.hit
+      expect(cruiser.sunk?).to eq(true)
+      expect(cell_2.render).to eq("X")
     end
   end
 end
