@@ -45,10 +45,36 @@ RSpec.describe Cell do
       expect(cell_1.render).to eq(".")
     end
 
-    it 'can register a miss or a hit' do
+    it 'can render a miss' do
       cell_1.fire_upon
       expect(cell_1.render).to eq("M")
+    end
 
+    it 'can register a hit on a ship' do
+      cell_1.place_ship(cruiser)
+      cell_1.fire_upon
+      expect(cell_1.render).to eq("H")
+    end
+
+    it 'wont sink a ship with less than required amount of hits' do
+      cell_1.place_ship(cruiser)
+      expect(cell_1.ship).to eq(cruiser)
+      cell_1.fire_upon
+      expect(cell_1.ship.health).to eq(2)
+      expect(cell_1.fired_upon?).to eq(true)
+      expect(cell_1.ship.sunk?).to eq(false)
+    end
+
+    it 'will sink a ship when health reaches 0'
+
+    it 'cant have the same cell hit twice' do
+      cell_1.place_ship(cruiser)
+      expect(cell_1.ship).to eq(cruiser)
+      cell_1.fire_upon
+      expect(cell_1.ship.health).to eq(2)
+      expect(cell_1.fired_upon?).to eq(true)
+      cell_1.fire_upon
+      expect(cell_1.ship.health).to eq(2)
     end
   end
 end

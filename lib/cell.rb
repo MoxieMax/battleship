@@ -38,6 +38,8 @@ class Cell
       return "M"
     elsif self.fired_upon? == false
       return "."
+    else self.empty? == false && self.fired_upon? == true
+      return "H"
     end
   end
 
