@@ -33,7 +33,7 @@ class Cell
     end
   end
   
-  def render(value=false)
+  def render(value = false)
     if self.empty? == true && self.fired_upon? == true
       return "M"
     elsif value == true && self.empty? == false

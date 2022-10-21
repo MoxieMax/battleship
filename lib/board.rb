@@ -67,5 +67,16 @@ class Board
     end
   end
   
+  def render(is = false)
+    cell_rend = @cells.values.map do |value|
+      value.render(is)
+    end
+    "  1 2 3 4 \n" +
+    "A #{cell_rend[0]} #{cell_rend[1]} #{cell_rend[2]} #{cell_rend[3]} \n" +
+    "B #{cell_rend[4]} #{cell_rend[5]} #{cell_rend[6]} #{cell_rend[7]} \n" +
+    "C #{cell_rend[8]} #{cell_rend[9]} #{cell_rend[10]} #{cell_rend[11]} \n" +
+    "D #{cell_rend[12]} #{cell_rend[13]} #{cell_rend[14]} #{cell_rend[15]} \n"
+  end
+  
 end
 # require 'pry' ; binding.pry
