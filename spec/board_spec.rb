@@ -84,6 +84,7 @@ RSpec.describe Board do
       board.place(submarine, ["A1", "B1"])
     
       expect(board.valid_placement?(submarine, ["A1", "B1"])).to eq(false)
+      
     end
   end
   #expect().to eq()
