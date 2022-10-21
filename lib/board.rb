@@ -3,47 +3,59 @@ class Board
 
   def initialize
     @cells = {
-      "A1" => Cell.new("A1"),
-      "A2" => Cell.new("A2"),
-      "A3" => Cell.new("A3"),
-      "A4" => Cell.new("A4"),
-      "B1" => Cell.new("B1"),
-      "B2" => Cell.new("B2"),
-      "B3" => Cell.new("B3"),
-      "B4" => Cell.new("B4"),
-      "C1" => Cell.new("C1"),
-      "C2" => Cell.new("C2"),
-      "C3" => Cell.new("C3"),
-      "C4" => Cell.new("C4"),
-      "D1" => Cell.new("D1"),
-      "D2" => Cell.new("D2"),
-      "D3" => Cell.new("D3"),
-      "D4" => Cell.new("D4"),
+      'A1' => Cell.new('A1'),
+      'A2' => Cell.new('A2'),
+      'A3' => Cell.new('A3'),
+      'A4' => Cell.new('A4'),
+      'B1' => Cell.new('B1'),
+      'B2' => Cell.new('B2'),
+      'B3' => Cell.new('B3'),
+      'B4' => Cell.new('B4'),
+      'C1' => Cell.new('C1'),
+      'C2' => Cell.new('C2'),
+      'C3' => Cell.new('C3'),
+      'C4' => Cell.new('C4'),
+      'D1' => Cell.new('D1'),
+      'D2' => Cell.new('D2'),
+      'D3' => Cell.new('D3'),
+      'D4' => Cell.new('D4'),
     }
   end
 
   def valid_coordinate?(coord)
     @cells.keys.include?(coord)
-
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
+  def valid_placement?(ship, coords)
+    # valid_length = ship.length == coords.length
+    # require 'pry' ; binding.pry
+    # horizontal = #coords.include?(same letter) && coords (are the numbers consecutive)
+    #check if the letters for the coords are the same, if not skip to next step, if yes check numbers are consecutive
+    #if letters are different check if numbers are the same, if neither numbers nor letters are consecutive, coords are invalid
+    if valid_length?(ship, coords) == true
+      true
+    else
+      false
+    end
+  end
+  
+  def valid_length?(ship, coords)
+    ship.length == coords.length
+  end
+  
+  def row?(ship, coords)
+    
+  end
+  
+  # def column?(ship, coords)
+  # 
+  # end
+  # 
+  # 
+  # 
 end
+
+# def valid_coordinate?(params)
+# if  coordinates.map {|coordinate| @cells.has_key?(coordinate)}.all?(true) && !coordinates.map {|coordinate| @cells.has_key?(coordinate)}.empty?
+#       return false if coordinates.any? { |coordinate| @cells[coordinate].empty? == false }
+# end
