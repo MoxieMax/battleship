@@ -1,3 +1,4 @@
+
 class Board
   attr_reader :cells
 
@@ -26,36 +27,45 @@ class Board
     @cells.keys.include?(coord)
   end
   
+  def valid_length?(ship, coords)
+    ship.length == coords.length
+  end
+  
+  def horizontal_placement?(ship, coords)
+    coords.sort!
+    letter = coords.map { |coord| coord.slice(0) }
+    num = coords.map { |coord| coord.slice(1..2).to_i }
+    (letter.uniq.count == 1 && (num.min..num.max).to_a == num)
+  end
+  
+  def vertical_placement?(ship, coords)
+    coords.sort!
+    letter = coords.map { |coord| coord.slice(0) }
+    num = coords.map { |coord| coord.slice(1..2).to_i }
+    (num.all?(num[0]) && (letter[0].ord + (ship.length - 1)) == letter.last.ord)
+  end
+  
+  def cell_empty?(coords)
+    coords.count {|coord| @cells[coord].empty?} == coords.length
+  end
+  
   def valid_placement?(ship, coords)
-    # valid_length = ship.length == coords.length
-    # require 'pry' ; binding.pry
-    # horizontal = #coords.include?(same letter) && coords (are the numbers consecutive)
-    #check if the letters for the coords are the same, if not skip to next step, if yes check numbers are consecutive
-    #if letters are different check if numbers are the same, if neither numbers nor letters are consecutive, coords are invalid
-    if valid_length?(ship, coords) == true
+    coords.sort!
+    if valid_length?(ship, coords) && horizontal_placement?(ship, coords) && cell_empty?(coords) || valid_length?(ship, coords) && vertical_placement?(ship, coords) && cell_empty?(coords)
       true
     else
       false
     end
   end
   
-  def valid_length?(ship, coords)
-    ship.length == coords.length
+  def place(ship, coords)
+    if coords.map { |coord| valid_coordinate?(coord) } && valid_placement?(ship, coords)
+      coords.map { |coord|  @cells[coord].place_ship(ship) }
+      true
+    else
+      false
+    end
   end
   
-  def row?(ship, coords)
-    
-  end
-  
-  # def column?(ship, coords)
-  # 
-  # end
-  # 
-  # 
-  # 
 end
-
-# def valid_coordinate?(params)
-# if  coordinates.map {|coordinate| @cells.has_key?(coordinate)}.all?(true) && !coordinates.map {|coordinate| @cells.has_key?(coordinate)}.empty?
-#       return false if coordinates.any? { |coordinate| @cells[coordinate].empty? == false }
-# end
+# require 'pry' ; binding.pry
