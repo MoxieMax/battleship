@@ -17,7 +17,7 @@ class Game
         "Play"#skynet board setup!
         break
       elsif player_input == "q"
-      return puts "Loser lol"
+        return puts "Loser lol"
       else
       puts "no valid input, please press P to play or Q to quit!"
       end
