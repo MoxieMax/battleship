@@ -59,6 +59,8 @@ class Board
   end
   
   def place(ship, coords)
+    
+    #format the coords
     if coords.map { |coord| valid_coordinate?(coord) } && valid_placement?(ship, coords)
       coords.map { |coord|  @cells[coord].place_ship(ship) }
       true
