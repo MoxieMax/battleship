@@ -1,15 +1,15 @@
 class Skynet
-attr_reader :board,
-            :cruiser,
-            :submarine,
-            :skynet_moves,
-            :ships
+attr_reader :sky_board,
+            :sky_cruiser,
+            :sky_submarine,
+            :sky_moves,
+            :sky_ships
   def initialize
-    @board = Board.new
-    @cruiser = Ship.new('cruiser', 3)
-    @submarine = Ship.new('submarine', 2)
-    @ships = [@cruiser, @submarine]
-    @skynet_moves = @board.cells.keys
+    @sky_board = Board.new
+    @sky_cruiser = Ship.new('cruiser', 3)
+    @sky_submarine = Ship.new('submarine', 2)
+    @sky_ships = [@sky_cruiser, @sky_submarine]
+    @sky_moves = @sky_board.cells.keys
   end
 
   # def place_ship
@@ -21,7 +21,6 @@ attr_reader :board,
 
   def cruiser_place_hash
     skynet_placements = {
-
       1 => ["A1", "A2", "A3"],
       2 => ["A2", "A3", "A4"],
       3 => ["B1", "B2", "B3"],
@@ -39,7 +38,6 @@ attr_reader :board,
       15 => ["A4", "B4", "C4"],
       16 => ["B4", "C4", "D4"]
     }
-
   end
 
   def submarine_place_hash
@@ -71,25 +69,9 @@ attr_reader :board,
       24 =>["C4", "D4"]
     }
   end
+  
   def skynet_ship_place
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  end
 
 
 end

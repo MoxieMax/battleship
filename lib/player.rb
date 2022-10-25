@@ -3,7 +3,6 @@ class Player
               :cruiser,
               :submarine,
               :ships
-
   def initialize
     @board = Board.new
     @cruiser = Ship.new('cruiser', 3)
@@ -11,13 +10,17 @@ class Player
     @ships = [@cruiser, @submarine]
   end
 
-  def player_place_ships
-    puts "please pick coordinates to place your ships"
-    puts "please pick 3 coordinates for your cruiser"
-    @board.render
-    cruiser_input = gets.chomp.upcase
-    @board.place(@cruiser, cruiser_input)
-    puts "please pick 2 coordinates for your submarine"
+  def place_ships
+    puts "Time to place your ships!"
+      @board.render
+    puts "Please choose 3 coordinates for your cruiser"
+      @board.render
+      cruiser_input = gets.chomp.upcase
+      @board.place(@cruiser, cruiser_input)
+    puts "Please choose 2 coordinates for your submarine"
+      @board.render
+      submarine_input = gets.chomp.upcase
+      @board.place(@submarine, submarine_input)
   end
 
 

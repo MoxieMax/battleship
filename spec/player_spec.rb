@@ -19,13 +19,5 @@ RSpec.describe Player do
       expect(player.submarine).to be_a(Ship)
       expect(player.ships).to eq([player.cruiser, player.submarine])
     end
-
-
-    it "" do
-      expect(player.player_place_ships).to eq("")
-
-    end
-
-
   end
 end

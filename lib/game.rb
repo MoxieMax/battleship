@@ -4,31 +4,24 @@ class Game
 
   def initialize
     @player = Player.new
-    @computer = Player.new(true)
+    @computer = Skynet.new
   end
 
   def start
     puts "WELCOME TO BATTLESHIP"
     puts "----------------------------"
-    puts "enter P to play or Q to quit"
+    puts "Enter P to play or Q to quit"
     loop do
       player_input = gets.chomp.downcase
       if player_input == "p"
-        "Play"#skynet board setup!
+        @player.place_ships#skynet board setup!
         break
       elsif player_input == "q"
         return puts "Loser lol"
       else
-      puts "no valid input, please press P to play or Q to quit!"
+      puts "Not a valid input, please press P to play or Q to quit!"
       end
     end
-
-
+    
   end
-
-
-
-
-
-
 end
