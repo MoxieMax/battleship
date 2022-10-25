@@ -43,7 +43,6 @@ class Player
     end
     @board.place(@submarine, submarine_input)
     puts self.render_board
-    
   end
 end
 # require 'pry', binding.pry
