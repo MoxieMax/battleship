@@ -12,16 +12,17 @@ class Player
 
   def place_ships
     puts "Time to place your ships!"
-      @board.render
+    puts @board.render
     puts "Please choose 3 coordinates for your cruiser"
-      @board.render
-      cruiser_input = gets.chomp.upcase
+      cruiser_input = [gets.chomp.upcase.split(" ")].flatten
       @board.place(@cruiser, cruiser_input)
+    puts @board.render(true)
     puts "Please choose 2 coordinates for your submarine"
-      @board.render
-      submarine_input = gets.chomp.upcase
+      submarine_input = [gets.chomp.upcase.split(" ")].flatten
       @board.place(@submarine, submarine_input)
+    puts @board.render(true)
   end
 
 
 end
+# require 'pry', binding.pry
