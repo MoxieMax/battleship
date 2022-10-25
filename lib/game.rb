@@ -1,10 +1,10 @@
 class Game
   attr_reader :player,
-  :computer
+              :skynet
 
   def initialize
     @player = Player.new
-    @computer = Skynet.new
+    @skynet = Skynet.new
   end
 
   def start
@@ -15,6 +15,7 @@ class Game
       player_input = gets.chomp.downcase
       if player_input == "p"
         @player.place_ships#skynet board setup!
+        @skynet.sky_place_ships
         break
       elsif player_input == "q"
         return puts "Loser lol"
@@ -22,6 +23,6 @@ class Game
       puts "Not a valid input, please press P to play or Q to quit!"
       end
     end
-    
+    #something to initialize turns
   end
 end

@@ -112,7 +112,6 @@ RSpec.describe Board do
       cell_4.fire_upon
 
       expect(board.render).to eq("  1 2 3 4 \nA X X X M \nB . . . . \nC . . . . \nD . . . . \n")
-      # board.render
     end
   end
   #expect().to eq()

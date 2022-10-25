@@ -23,8 +23,8 @@ class Board
     }
   end
 
-  def valid_coordinate?(coord)
-    @cells.keys.include?(coord)
+  def valid_coordinate?(coords)
+    @cells.keys.include?(coords)
   end
   
   def valid_length?(ship, coords)
@@ -46,7 +46,7 @@ class Board
   end
   
   def cell_empty?(coords)
-    coords.count {|coord| @cells[coord].empty?} == coords.length
+      coords.count {|coord| valid_coordinate?(coord) && @cells[coord].empty?} == coords.length
   end
   
   def valid_placement?(ship, coords)
@@ -59,10 +59,8 @@ class Board
   end
   
   def place(ship, coords)
-    
-    #format the coords
     if coords.map { |coord| valid_coordinate?(coord) } && valid_placement?(ship, coords)
-      coords.map { |coord|  @cells[coord].place_ship(ship) }
+      coords.map { |coord| @cells[coord].place_ship(ship) }
       true
     else
       false
@@ -79,6 +77,4 @@ class Board
     "C #{cell_rend[8]} #{cell_rend[9]} #{cell_rend[10]} #{cell_rend[11]} \n" +
     "D #{cell_rend[12]} #{cell_rend[13]} #{cell_rend[14]} #{cell_rend[15]} \n"
   end
-  
 end
-# require 'pry' ; binding.pry

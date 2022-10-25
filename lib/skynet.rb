@@ -12,13 +12,6 @@ attr_reader :sky_board,
     @sky_moves = @sky_board.cells.keys
   end
 
-  # def place_ship
-  #   first_cell = skynet_moves.sample
-  #   require "pry"
-  #   binding.pry
-  #   skynet_moves.find_all
-  # end
-
   def cruiser_place_hash
     skynet_placements = {
       1 => ["A1", "A2", "A3"],
@@ -42,7 +35,6 @@ attr_reader :sky_board,
 
   def submarine_place_hash
     skynet_placements = {
-
       1 =>["A1", "A2"],
       2 =>["A2", "A3"],
       3 =>["A3", "A4"],
@@ -70,7 +62,32 @@ attr_reader :sky_board,
     }
   end
   
-  def skynet_ship_place
+  def sky_render_board
+    @sky_board.render(true)
+  end
+  
+  def sky_place_cruiser
+    cruiser_key = cruiser_place_hash.keys.sample
+    cruiser_coords = self.cruiser_place_hash[cruiser_key]
+    @sky_board.place(@sky_cruiser, cruiser_coords)
+    puts self.sky_render_board
+  end
+  
+  def sky_place_submarine
+    sub_key = submarine_place_hash.keys.sample
+    sub_coords = self.submarine_place_hash[sub_key]
+    require 'pry';binding.pry
+    until @sky_board.valid_placement?(@sky_submarine, sub_coords)
+      sub_key = submarine_place_hash.keys.sample
+      sub_coords = self.submarine_place_hash[sub_key]
+    end
+    @sky_board.place(@sky_submarine, sub_coords)
+    puts self.sky_render_board
+  end
+  
+  def sky_place_ships
+    self.sky_place_cruiser
+    self.sky_place_submarine
   end
 
 
