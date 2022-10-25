@@ -21,6 +21,7 @@ class Game
       else
       puts "Not a valid input, please press P to play or Q to quit!"
       end
+      
     end
     
   end
