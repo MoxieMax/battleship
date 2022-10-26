@@ -28,8 +28,12 @@ class Game
     end
     self.turns
   end
-  
+
   def turns
-    @turn.player_turn
+    until @turn.game_over?
+      @turn.player_turn
+
+      @turn.skynet_turn
+    end 
   end
 end

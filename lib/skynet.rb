@@ -61,17 +61,17 @@ attr_reader :sky_board,
       24 =>["C4", "D4"]
     }
   end
-  
+
   def sky_render_board
     @sky_board.render(true)
   end
-  
+
   def sky_place_cruiser
     cruiser_key = cruiser_place_hash.keys.sample
     cruiser_coords = self.cruiser_place_hash[cruiser_key]
     @sky_board.place(@sky_cruiser, cruiser_coords)
   end
-  
+
   def sky_place_submarine
     sub_key = submarine_place_hash.keys.sample
     sub_coords = self.submarine_place_hash[sub_key]
@@ -81,16 +81,17 @@ attr_reader :sky_board,
     end
     @sky_board.place(@sky_submarine, sub_coords)
   end
-  
+
   def sky_place_ships
     self.sky_place_cruiser
     self.sky_place_submarine
   end
-  
+
   def sky_shot
-    @sky_moves.shuffle!.sample
+    @sky_moves.shuffle!.first
+    @sky_moves.shift
   end
-  
+
   def has_lost?
     @sky_cruiser.sunk? && @sky_submarine.sunk?
   end
