@@ -23,6 +23,18 @@ class Game
       puts "Not a valid input, please press P to play or Q to quit!"
       end
     end
-    #something to initialize turns
+    self.turns
+  end
+  
+  def turns
+    loop do
+      ""
+      
+    end
   end
 end
+
+# puts '=============COMPUTER BOARD============='
+# print @skynet.board.render
+# puts '==============PLAYER BOARD=============='
+# print @board.render(true)

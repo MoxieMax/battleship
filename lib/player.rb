@@ -44,5 +44,9 @@ class Player
     @board.place(@submarine, submarine_input)
     puts self.render_board
   end
+  
+  def has_lost?
+    @cruiser.health == 0 && @submarine.health == 0
+  end
 end
 # require 'pry', binding.pry

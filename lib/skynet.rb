@@ -70,7 +70,6 @@ attr_reader :sky_board,
     cruiser_key = cruiser_place_hash.keys.sample
     cruiser_coords = self.cruiser_place_hash[cruiser_key]
     @sky_board.place(@sky_cruiser, cruiser_coords)
-    puts self.sky_render_board
   end
   
   def sky_place_submarine
@@ -82,12 +81,15 @@ attr_reader :sky_board,
       sub_coords = self.submarine_place_hash[sub_key]
     end
     @sky_board.place(@sky_submarine, sub_coords)
-    puts self.sky_render_board
   end
   
   def sky_place_ships
     self.sky_place_cruiser
     self.sky_place_submarine
+  end
+  
+  def has_lost?
+    @sky_cruiser.health == 0 && @sky_submarine.health == 0
   end
 
 
