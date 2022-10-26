@@ -72,7 +72,7 @@ class Turn
       p "Skynet has won! Bow down before your machine overlord!"
     #  puts self.final_result
     elsif @skynet.has_lost?
-      p "You won! This time."
+      p "You won this time, human!"
     #  puts self.final_result
     end
   end
