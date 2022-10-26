@@ -33,17 +33,17 @@ class Cell
     end
   end
   
-  def render(value = false)
-    if self.empty? == true && self.fired_upon? == true
+  def render(value = false) #terminology: default argument
+    if self.empty? && self.fired_upon?
       return "M"
-    elsif value == true && self.empty? == false
+    elsif value == true && !self.empty?
       return "S"
-    elsif self.fired_upon? == false
-      return "."
-    elsif self.empty? == false && self.fired_upon? == true && ship.sunk? == true
+    elsif !self.empty? && self.fired_upon? && ship.sunk?
       return "X"
-    elsif self.empty? == false && self.fired_upon? == true
+    elsif !self.empty? && self.fired_upon?
       return "H"
+    else !self.fired_upon?
+      return "."
     end
   end
 end

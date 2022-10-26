@@ -70,25 +70,28 @@ attr_reader :sky_board,
     cruiser_key = cruiser_place_hash.keys.sample
     cruiser_coords = self.cruiser_place_hash[cruiser_key]
     @sky_board.place(@sky_cruiser, cruiser_coords)
-    puts self.sky_render_board
   end
   
   def sky_place_submarine
     sub_key = submarine_place_hash.keys.sample
     sub_coords = self.submarine_place_hash[sub_key]
-    require 'pry';binding.pry
     until @sky_board.valid_placement?(@sky_submarine, sub_coords)
       sub_key = submarine_place_hash.keys.sample
       sub_coords = self.submarine_place_hash[sub_key]
     end
     @sky_board.place(@sky_submarine, sub_coords)
-    puts self.sky_render_board
   end
   
   def sky_place_ships
     self.sky_place_cruiser
     self.sky_place_submarine
   end
-
-
+  
+  def sky_shot
+    @sky_moves.shuffle!.sample
+  end
+  
+  def has_lost?
+    @sky_cruiser.sunk? && @sky_submarine.sunk?
+  end
 end

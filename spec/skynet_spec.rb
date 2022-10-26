@@ -1,8 +1,4 @@
-require 'pry'
-require './lib/ship'
-require './lib/cell'
-require './lib/board'
-require './lib/skynet'
+require 'spec_helper'
 
 
 RSpec.describe Skynet do
@@ -19,6 +15,22 @@ RSpec.describe Skynet do
       expect(skynet.sky_submarine).to be_a(Ship)
       expect(skynet.sky_moves).to eq(["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "D1", "D2", "D3", "D4"])
       expect(skynet.sky_ships).to eq([skynet.sky_cruiser, skynet.sky_submarine])
+    end
+    
+    it 'can determine if skynet has lost' do
+      skynet.sky_cruiser.hit
+      skynet.sky_cruiser.hit
+      skynet.sky_cruiser.hit
+      skynet.sky_submarine.hit
+      
+      expect(skynet.sky_cruiser.sunk?).to eq(true)
+      expect(skynet.sky_submarine.sunk?).to eq(false)
+      expect(skynet.has_lost?).to eq(false)
+      
+      skynet.sky_submarine.hit
+      
+      expect(skynet.sky_submarine.sunk?).to eq(true)
+      expect(skynet.has_lost?).to eq(true)
     end
   end
 end

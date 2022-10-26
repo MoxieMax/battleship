@@ -1,6 +1,9 @@
-require 'pry'
-require './lib/ship'
-require './lib/cell'
-require './lib/board'
-require './lib/player'
-require './lib/game'
+require 'spec_helper'
+
+RSpec.describe Game do
+  let (:game) {Game.new}
+  
+  it 'exists' do
+    expect(game).to be_a(Game)
+  end
+end
