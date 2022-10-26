@@ -32,8 +32,8 @@ class Game
   def turns
     until @turn.game_over?
       @turn.player_turn
-
       @turn.skynet_turn
-    end 
+    end
+    @turn.final_result
   end
 end

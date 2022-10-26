@@ -15,28 +15,33 @@ class Turn
 
   def render_result
   "==============SKYNET BOARD==============\n" +
-  "#{@skynet.sky_board.sky_render_board}" +
+  "#{@skynet.sky_board.render}" +
   "==============PLAYER BOARD==============\n" +
-  "#{@player.board.render_board(true)}"
+  "#{@player.board.render(true)}"
+  end
+
+  def final_result
+  "==============SKYNET BOARD==============\n" +
+  "#{@skynet.sky_board.render(true)}" +
+  "==============PLAYER BOARD==============\n" +
+  "#{@player.board.render(true)}"
   end
 
   def player_turn
     puts "Enter the coordinate for your shot"
-    puts @skynet.sky_board.render(true)
-    puts @player.board.render(true)
     loop do
       player_shot = gets.chomp.upcase
       if @player.board.valid_coordinate?(player_shot) && !@player_moves.include?(player_shot)
         @skynet.sky_board.cells[player_shot].fire_upon
         @player_moves << player_shot
-        puts @skynet.sky_board.render
-        if player_shot.empty?
+        if @skynet.sky_board.cells[player_shot].empty?
           puts "Your shot at #{player_shot} was a miss."
           break
-        else !player_shot.empty?
+        else !@skynet.sky_board.cells[player_shot].empty?
           puts "Your shot at #{player_shot} was a hit!"
           break
         end
+        break
       elsif
         !@player.board.valid_coordinate?(player_shot)
         puts "That is not a valid coordinate"
@@ -48,33 +53,27 @@ class Turn
   end
 
   def skynet_turn
-    # loop do
-      shot = @skynet.sky_shot
-      
-      # if !@sky_moves.include?(shot)
-        @player.board.cells[shot].fire_upon
-        @sky_moves << shot
-        puts @player.board.render
-      # end
+    shot = @skynet.sky_shot
+    @player.board.cells[shot].fire_upon
+    @sky_moves << shot
+    puts self.render_result
+    if @player.board.cells[shot].empty?
+      puts "My shot at #{shot} was a miss."
+    else !@player.board.cells[shot].empty?
+      puts "My shot at #{shot} was a hit!"
     end
-  #   puts "My shot at #{shot} was a #{shot.render}"
-  #   puts @player.board.render
-  #   if !self.game_over?
-  #     self.player_turn
-  #   else
-  #     puts "Game Over!"
-  #   end
-  # end
+
+  end
 
   # require 'pry'; binding.pry
 
   def game_over?
     if @player.has_lost?
       p "Skynet has won! Bow down before your machine overlord!"
+    #  puts self.final_result
     elsif @skynet.has_lost?
       p "You won! This time."
-    else
-      false
+    #  puts self.final_result
     end
   end
 
