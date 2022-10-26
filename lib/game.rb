@@ -1,10 +1,12 @@
 class Game
   attr_reader :player,
               :skynet
+              :turn
 
   def initialize
     @player = Player.new
     @skynet = Skynet.new
+    @turn = Turn.new(@player, @skynet)
   end
 
   def start
@@ -16,6 +18,7 @@ class Game
       if player_input == "p"
         @player.place_ships#skynet board setup!
         @skynet.sky_place_ships
+        @skynet.sky_render_board
         break
       elsif player_input == "q"
         return puts "Loser lol"
@@ -27,14 +30,6 @@ class Game
   end
   
   def turns
-    loop do
-      ""
-      
-    end
+    @turn.player_turn
   end
 end
-
-# puts '=============COMPUTER BOARD============='
-# print @skynet.board.render
-# puts '==============PLAYER BOARD=============='
-# print @board.render(true)

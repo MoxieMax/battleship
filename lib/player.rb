@@ -46,7 +46,7 @@ class Player
   end
   
   def has_lost?
-    @cruiser.health == 0 && @submarine.health == 0
+    @cruiser.sunk? && @submarine.sunk?
   end
 end
 # require 'pry', binding.pry
